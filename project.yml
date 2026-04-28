@@ -1,0 +1,40 @@
+name: RadioParadise
+options:
+  bundleIdPrefix: com.madebynaga
+  deploymentTarget:
+    iOS: "26.0"
+  createIntermediateGroups: true
+  xcodeVersion: "16.4"
+
+targets:
+  RadioParadise:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Sources/RadioParadise
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.madebynaga.radioparadise
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        PRODUCT_NAME: Radio Paradise
+    info:
+      path: Sources/RadioParadise/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Radio Paradise
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        UIBackgroundModes:
+          - audio
+        NSAppTransportSecurity:
+          NSExceptionDomains:
+            stream.radioparadise.com:
+              NSExceptionAllowsInsecureHTTPLoads: true
+              NSIncludesSubdomains: false
+            stream-uk1.radioparadise.com:
+              NSExceptionAllowsInsecureHTTPLoads: true
+              NSIncludesSubdomains: false
