@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct RadioParadiseApp: App {
+struct ParadisePlayerApp: App {
     @State private var player = PlayerViewModel()
 
     var body: some Scene {

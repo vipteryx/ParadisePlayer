@@ -1,4 +1,4 @@
-# Radio Paradise
+# Paradise Player
 
 An alternative iOS player for [Radio Paradise](https://radioparadise.com), built with SwiftUI and the iOS 26 Liquid Glass design language.
 
@@ -20,7 +20,7 @@ An alternative iOS player for [Radio Paradise](https://radioparadise.com), built
 ```sh
 brew install xcodegen   # if needed
 xcodegen generate
-open RadioParadise.xcodeproj
+open ParadisePlayer.xcodeproj
 ```
 
 Set your development team in **Signing & Capabilities**, then build and run.

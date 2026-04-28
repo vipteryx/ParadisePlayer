@@ -7,143 +7,143 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		192B3BF309C9B3BC47FF559A /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A38BB34C7CB8723F35D13C3 /* PlayerViewModel.swift */; };
-		22BA44474485D4EFDDB00B27 /* RadioParadiseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1479F7A49679E0C783DFEB /* RadioParadiseAPI.swift */; };
-		59652252D5F79A5E64F239E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27A943892E4FC51936BDBD44 /* Assets.xcassets */; };
-		79E72BDD238E864BB1B1A41A /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898466FB09B308DC6D0474F9 /* Channel.swift */; };
-		B9F4F9DA5FFCC4C589D4F54A /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96578A8016BB32800114BFA /* Track.swift */; };
-		E98D3147F276B8310B9159E0 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF14C3FADB8DDD6A46932F2 /* PlayerView.swift */; };
-		F69628AA260EC9DB105C1AF2 /* RadioParadiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EB27346E919A25AD0ED89C /* RadioParadiseApp.swift */; };
-		FFD8EFD840572A5745D1B9C2 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 775AE25959A3B6E2383741BC /* AudioPlayer.swift */; };
+		01BDF17574EF08800866D685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1B1A4B7DD7BB87D503ED2B8 /* Assets.xcassets */; };
+		364B099B1635F5619C2B3F36 /* RadioParadiseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 146C42EB7B29165DB6A82386 /* RadioParadiseAPI.swift */; };
+		366F7D21CD578BC85AA4A3D2 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DD611B593B2A47A53DC8E2 /* Track.swift */; };
+		3AFA62BAC7308B3E4307FF61 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A17B575820EAECE9723CB4C /* Channel.swift */; };
+		506FCD36FADA524AD082B176 /* RadioParadiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D8817BEB2A03875AE7D40 /* RadioParadiseApp.swift */; };
+		AA956D65C10E86C31C9D0CF9 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A200E29318FB9DC801D100 /* PlayerView.swift */; };
+		D873DC20761ED30811B3AB9C /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602F005E6CEC38EA0168BDFF /* AudioPlayer.swift */; };
+		FB827C8453AFC1B732E224EF /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF48069A13119565A12D5AB /* PlayerViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		27A943892E4FC51936BDBD44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3AF14C3FADB8DDD6A46932F2 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		775AE25959A3B6E2383741BC /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		84EB27346E919A25AD0ED89C /* RadioParadiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioParadiseApp.swift; sourceTree = "<group>"; };
-		898466FB09B308DC6D0474F9 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		9A38BB34C7CB8723F35D13C3 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
-		A96578A8016BB32800114BFA /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
-		BB1479F7A49679E0C783DFEB /* RadioParadiseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioParadiseAPI.swift; sourceTree = "<group>"; };
-		CC0B430B0EBDC1CE42D6151C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		CEFCCE8E78BBCC1B1E02A3F7 /* RadioParadise.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RadioParadise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A8D8817BEB2A03875AE7D40 /* RadioParadiseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioParadiseApp.swift; sourceTree = "<group>"; };
+		146C42EB7B29165DB6A82386 /* RadioParadiseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioParadiseAPI.swift; sourceTree = "<group>"; };
+		26A200E29318FB9DC801D100 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		4A17B575820EAECE9723CB4C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		59DD611B593B2A47A53DC8E2 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		602F005E6CEC38EA0168BDFF /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		6ACF6889A691949CF4FB7F57 /* ParadisePlayer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ParadisePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EF48069A13119565A12D5AB /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		B1B1A4B7DD7BB87D503ED2B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2CD4B80EC8F914303136A5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-		058437EE2A070677AB6775E1 /* Views */ = {
+		096CC44746FDE56B982C5910 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				3AF14C3FADB8DDD6A46932F2 /* PlayerView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		259A0AA86F3F70F37C5211C6 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				342FD7DA3A94F4159292ED0C /* RadioParadise */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		28CCDD06E213496BC4D55FA1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CEFCCE8E78BBCC1B1E02A3F7 /* RadioParadise.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		2A4E2DCF220BC08C64DF77E5 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				898466FB09B308DC6D0474F9 /* Channel.swift */,
-				A96578A8016BB32800114BFA /* Track.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		342FD7DA3A94F4159292ED0C /* RadioParadise */ = {
-			isa = PBXGroup;
-			children = (
-				749F00BE950E2EA0F91C23A1 /* App */,
-				2A4E2DCF220BC08C64DF77E5 /* Models */,
-				C04971E75A8DB41F87D3E0B3 /* Resources */,
-				B14E826ED06B497D3B1C4C66 /* Services */,
-				97792AE4B729C6B63A0E636A /* ViewModels */,
-				058437EE2A070677AB6775E1 /* Views */,
-			);
-			path = RadioParadise;
-			sourceTree = "<group>";
-		};
-		749F00BE950E2EA0F91C23A1 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				84EB27346E919A25AD0ED89C /* RadioParadiseApp.swift */,
+				0A8D8817BEB2A03875AE7D40 /* RadioParadiseApp.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
-		97792AE4B729C6B63A0E636A /* ViewModels */ = {
+		136FB423AB48F450A0354AFE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A38BB34C7CB8723F35D13C3 /* PlayerViewModel.swift */,
+				6ACF6889A691949CF4FB7F57 /* ParadisePlayer.app */,
 			);
-			path = ViewModels;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		B14E826ED06B497D3B1C4C66 /* Services */ = {
+		326DD3156C0BF22F4E7E0427 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				775AE25959A3B6E2383741BC /* AudioPlayer.swift */,
-				BB1479F7A49679E0C783DFEB /* RadioParadiseAPI.swift */,
+				602F005E6CEC38EA0168BDFF /* AudioPlayer.swift */,
+				146C42EB7B29165DB6A82386 /* RadioParadiseAPI.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		C04971E75A8DB41F87D3E0B3 /* Resources */ = {
+		644976D8669EF35D406ECD66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				27A943892E4FC51936BDBD44 /* Assets.xcassets */,
-				CC0B430B0EBDC1CE42D6151C /* Info.plist */,
+				B1B1A4B7DD7BB87D503ED2B8 /* Assets.xcassets */,
+				E2CD4B80EC8F914303136A5C /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		D7741435DDF4B48F1E1DB4F2 = {
+		8F319677A513D25F95EAD896 = {
 			isa = PBXGroup;
 			children = (
-				259A0AA86F3F70F37C5211C6 /* Sources */,
-				28CCDD06E213496BC4D55FA1 /* Products */,
+				A1646ECAD19D4346CDE9AF10 /* Sources */,
+				136FB423AB48F450A0354AFE /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		A1646ECAD19D4346CDE9AF10 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FFF43F6C1556E64CEBC17464 /* ParadisePlayer */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		D0ACD09BDD61115B23741565 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4A17B575820EAECE9723CB4C /* Channel.swift */,
+				59DD611B593B2A47A53DC8E2 /* Track.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DE4938CA2AAD953E4CBCEC70 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				9EF48069A13119565A12D5AB /* PlayerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EB03B9D568A27307A0E9EAD8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				26A200E29318FB9DC801D100 /* PlayerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FFF43F6C1556E64CEBC17464 /* ParadisePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				096CC44746FDE56B982C5910 /* App */,
+				D0ACD09BDD61115B23741565 /* Models */,
+				644976D8669EF35D406ECD66 /* Resources */,
+				326DD3156C0BF22F4E7E0427 /* Services */,
+				DE4938CA2AAD953E4CBCEC70 /* ViewModels */,
+				EB03B9D568A27307A0E9EAD8 /* Views */,
+			);
+			path = ParadisePlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		11CACE025DA4069F6E6BFFDF /* RadioParadise */ = {
+		CFB66D0BB9F3E33144C7E721 /* ParadisePlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 700AF27F963CF3DCF9DBEA87 /* Build configuration list for PBXNativeTarget "RadioParadise" */;
+			buildConfigurationList = 5EE6746752E92FDF66AE0F23 /* Build configuration list for PBXNativeTarget "ParadisePlayer" */;
 			buildPhases = (
-				E3CB74F4AF309D0AFF7E074F /* Sources */,
-				88CFA1C64A99887CA9305DF3 /* Resources */,
+				6EEA4B6C924D2B73599E98C9 /* Sources */,
+				247B988E4A284A6DD9DDBF7B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = RadioParadise;
+			name = ParadisePlayer;
 			packageProductDependencies = (
 			);
-			productName = RadioParadise;
-			productReference = CEFCCE8E78BBCC1B1E02A3F7 /* RadioParadise.app */;
+			productName = ParadisePlayer;
+			productReference = 6ACF6889A691949CF4FB7F57 /* ParadisePlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		733E506C111B74FAA8945C20 /* Project object */ = {
+		DEBCF798D776E446212D148D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
@@ -151,93 +151,74 @@
 				TargetAttributes = {
 				};
 			};
-			buildConfigurationList = ED0604442111BE68ECBF8CB9 /* Build configuration list for PBXProject "RadioParadise" */;
+			buildConfigurationList = 53AEC76477E3A44162740F84 /* Build configuration list for PBXProject "ParadisePlayer" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				en,
 			);
-			mainGroup = D7741435DDF4B48F1E1DB4F2;
+			mainGroup = 8F319677A513D25F95EAD896;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 28CCDD06E213496BC4D55FA1 /* Products */;
+			productRefGroup = 136FB423AB48F450A0354AFE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				11CACE025DA4069F6E6BFFDF /* RadioParadise */,
+				CFB66D0BB9F3E33144C7E721 /* ParadisePlayer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		88CFA1C64A99887CA9305DF3 /* Resources */ = {
+		247B988E4A284A6DD9DDBF7B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59652252D5F79A5E64F239E3 /* Assets.xcassets in Resources */,
+				01BDF17574EF08800866D685 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E3CB74F4AF309D0AFF7E074F /* Sources */ = {
+		6EEA4B6C924D2B73599E98C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD8EFD840572A5745D1B9C2 /* AudioPlayer.swift in Sources */,
-				79E72BDD238E864BB1B1A41A /* Channel.swift in Sources */,
-				E98D3147F276B8310B9159E0 /* PlayerView.swift in Sources */,
-				192B3BF309C9B3BC47FF559A /* PlayerViewModel.swift in Sources */,
-				22BA44474485D4EFDDB00B27 /* RadioParadiseAPI.swift in Sources */,
-				F69628AA260EC9DB105C1AF2 /* RadioParadiseApp.swift in Sources */,
-				B9F4F9DA5FFCC4C589D4F54A /* Track.swift in Sources */,
+				D873DC20761ED30811B3AB9C /* AudioPlayer.swift in Sources */,
+				3AFA62BAC7308B3E4307FF61 /* Channel.swift in Sources */,
+				AA956D65C10E86C31C9D0CF9 /* PlayerView.swift in Sources */,
+				FB827C8453AFC1B732E224EF /* PlayerViewModel.swift in Sources */,
+				364B099B1635F5619C2B3F36 /* RadioParadiseAPI.swift in Sources */,
+				506FCD36FADA524AD082B176 /* RadioParadiseApp.swift in Sources */,
+				366F7D21CD578BC85AA4A3D2 /* Track.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		194A99F41212F064D068F22E /* Debug */ = {
+		1DC501889FE4616655A07EAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = Sources/RadioParadise/Resources/Info.plist;
+				INFOPLIST_FILE = Sources/ParadisePlayer/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.madebynaga.radioparadise;
-				PRODUCT_NAME = "Radio Paradise";
+				PRODUCT_BUNDLE_IDENTIFIER = com.madebynaga.paradiseplayer;
+				PRODUCT_NAME = "Paradise Player";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		660E85AFB693172DD9E90B76 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = Sources/RadioParadise/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.madebynaga.radioparadise;
-				PRODUCT_NAME = "Radio Paradise";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		F2DB1A5D49DE480788079C65 /* Debug */ = {
+		3F43013EC4C9CEC16F965FDE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -300,7 +281,26 @@
 			};
 			name = Debug;
 		};
-		FFC5913DE04BD25084ADE83B /* Release */ = {
+		BDC36EE6B8C4992E1EE82ADC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = Sources/ParadisePlayer/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.madebynaga.paradiseplayer;
+				PRODUCT_NAME = "Paradise Player";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C35694B197F0E8B4B9BF02C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -359,25 +359,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		700AF27F963CF3DCF9DBEA87 /* Build configuration list for PBXNativeTarget "RadioParadise" */ = {
+		53AEC76477E3A44162740F84 /* Build configuration list for PBXProject "ParadisePlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				194A99F41212F064D068F22E /* Debug */,
-				660E85AFB693172DD9E90B76 /* Release */,
+				3F43013EC4C9CEC16F965FDE /* Debug */,
+				C35694B197F0E8B4B9BF02C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		ED0604442111BE68ECBF8CB9 /* Build configuration list for PBXProject "RadioParadise" */ = {
+		5EE6746752E92FDF66AE0F23 /* Build configuration list for PBXNativeTarget "ParadisePlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F2DB1A5D49DE480788079C65 /* Debug */,
-				FFC5913DE04BD25084ADE83B /* Release */,
+				1DC501889FE4616655A07EAA /* Debug */,
+				BDC36EE6B8C4992E1EE82ADC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 733E506C111B74FAA8945C20 /* Project object */;
+	rootObject = DEBCF798D776E446212D148D /* Project object */;
 }

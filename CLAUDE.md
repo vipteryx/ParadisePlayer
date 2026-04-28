@@ -1,4 +1,4 @@
-# RadioParadise iOS
+# Paradise Player
 
 Native iOS 26 SwiftUI player for Radio Paradise. Liquid Glass UI.
 
@@ -29,7 +29,7 @@ Stream URLs use HTTP — ATS exceptions configured for `stream.radioparadise.com
 
 ```sh
 xcodegen generate
-open RadioParadise.xcodeproj
+open ParadisePlayer.xcodeproj
 ```
 
 Set your team in Signing & Capabilities, then Run.

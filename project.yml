@@ -1,4 +1,4 @@
-name: RadioParadise
+name: ParadisePlayer
 options:
   bundleIdPrefix: com.madebynaga
   deploymentTarget:
@@ -7,22 +7,22 @@ options:
   xcodeVersion: "16.4"
 
 targets:
-  RadioParadise:
+  ParadisePlayer:
     type: application
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: Sources/RadioParadise
+      - path: Sources/ParadisePlayer
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.madebynaga.radioparadise
+        PRODUCT_BUNDLE_IDENTIFIER: com.madebynaga.paradiseplayer
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1,2"
-        PRODUCT_NAME: Radio Paradise
+        PRODUCT_NAME: Paradise Player
     info:
-      path: Sources/RadioParadise/Resources/Info.plist
+      path: Sources/ParadisePlayer/Resources/Info.plist
       properties:
-        CFBundleDisplayName: Radio Paradise
+        CFBundleDisplayName: Paradise Player
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
