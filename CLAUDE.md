@@ -50,6 +50,14 @@ Set your team in Signing & Capabilities, then Run.
 5. **CarPlay** — needs `com.apple.developer.carplay-audio` entitlement (request at developer.apple.com)
 6. **Offline caching** — pre-buffer blocks to disk
 
+## Working Rules
+
+After every meaningful change:
+1. Add a dated entry to the `## Changelog` section in `README.md`
+2. Update `TODO.md` — check off completed items, add any new ones
+
+Do this before committing.
+
 ## Notes
 
 - Minimum deployment: iOS 26 (required for `.glassEffect()`)
