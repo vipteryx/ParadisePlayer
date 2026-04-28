@@ -13,6 +13,7 @@
 		3AFA62BAC7308B3E4307FF61 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A17B575820EAECE9723CB4C /* Channel.swift */; };
 		506FCD36FADA524AD082B176 /* RadioParadiseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D8817BEB2A03875AE7D40 /* RadioParadiseApp.swift */; };
 		AA956D65C10E86C31C9D0CF9 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A200E29318FB9DC801D100 /* PlayerView.swift */; };
+		D3D9876D55C8CB257394D688 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F86FC6FF7334A58B9B2B042 /* Block.swift */; };
 		D873DC20761ED30811B3AB9C /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602F005E6CEC38EA0168BDFF /* AudioPlayer.swift */; };
 		FB827C8453AFC1B732E224EF /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF48069A13119565A12D5AB /* PlayerViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,7 @@
 		59DD611B593B2A47A53DC8E2 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		602F005E6CEC38EA0168BDFF /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		6ACF6889A691949CF4FB7F57 /* ParadisePlayer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ParadisePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F86FC6FF7334A58B9B2B042 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		9EF48069A13119565A12D5AB /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		B1B1A4B7DD7BB87D503ED2B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2CD4B80EC8F914303136A5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 		D0ACD09BDD61115B23741565 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8F86FC6FF7334A58B9B2B042 /* Block.swift */,
 				4A17B575820EAECE9723CB4C /* Channel.swift */,
 				59DD611B593B2A47A53DC8E2 /* Track.swift */,
 			);
@@ -187,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D873DC20761ED30811B3AB9C /* AudioPlayer.swift in Sources */,
+				D3D9876D55C8CB257394D688 /* Block.swift in Sources */,
 				3AFA62BAC7308B3E4307FF61 /* Channel.swift in Sources */,
 				AA956D65C10E86C31C9D0CF9 /* PlayerView.swift in Sources */,
 				FB827C8453AFC1B732E224EF /* PlayerViewModel.swift in Sources */,

@@ -8,90 +8,161 @@ final class PlayerViewModel {
     var currentTrack: Track?
     var selectedChannel: Channel = .main
     var isPlaying = false
+    var isLoading = false
     var errorMessage: String?
 
     private let api = RadioParadiseAPI()
     private let audioPlayer = AudioPlayer()
-    private var pollTask: Task<Void, Never>?
+
+    private var songQueue: [Track] = []
+    private var currentSongIndex: Int = 0
+    private var currentBlock: Block?
+    private var isFetchingNextBlock = false
+    private var startupTask: Task<Void, Never>?
 
     init() {
         setupRemoteCommands()
+        audioPlayer.onSongFinished = { [weak self] in
+            self?.advanceSong()
+        }
     }
+
+    // MARK: - Public interface
 
     func togglePlayback() {
         if isPlaying {
             audioPlayer.pause()
             isPlaying = false
-        } else if currentTrack != nil {
+        } else if !songQueue.isEmpty {
             audioPlayer.resume()
             isPlaying = true
         } else {
-            startPlaying()
+            launchPlayback()
         }
     }
 
     func selectChannel(_ channel: Channel) {
         selectedChannel = channel
-        if isPlaying {
-            startPlaying()
-        }
+        launchPlayback()
     }
 
-    private func startPlaying() {
-        audioPlayer.play(channel: selectedChannel)
-        isPlaying = true
-        startPolling()
+    func skipToNext() {
+        audioPlayer.advanceToNext()
+        advanceSong()
     }
 
-    private func startPolling() {
-        pollTask?.cancel()
-        pollTask = Task { [weak self] in
-            while !Task.isCancelled {
-                await self?.fetchNowPlaying()
-                try? await Task.sleep(for: .seconds(10))
+    // MARK: - Private
+
+    private func launchPlayback() {
+        startupTask?.cancel()
+        startupTask = Task { await startPlaying() }
+    }
+
+    private func startPlaying() async {
+        isLoading = true
+        defer { isLoading = false }
+        do {
+            let block = try await api.getBlock(channel: selectedChannel)
+            guard !Task.isCancelled else { return }
+
+            currentBlock = block
+            songQueue = block.songs
+            currentSongIndex = 0
+            currentTrack = block.songs.first
+
+            audioPlayer.loadSongs(block.songs.map(\.gaplessURL), initialSeek: block.initialSeek)
+            audioPlayer.play()
+            isPlaying = true
+            errorMessage = nil
+
+            if let track = currentTrack {
+                audioPlayer.updateNowPlaying(track, isPlaying: true)
+            }
+            checkPrefetch()
+        } catch {
+            print("startPlaying error: \(error)")
+            if !Task.isCancelled {
+                errorMessage = error.localizedDescription
             }
         }
     }
 
-    private func fetchNowPlaying() async {
+    private func advanceSong() {
+        currentSongIndex += 1
+        guard currentSongIndex < songQueue.count else {
+            isPlaying = false
+            currentTrack = nil
+            return
+        }
+        currentTrack = songQueue[currentSongIndex]
+        audioPlayer.updateNowPlaying(songQueue[currentSongIndex], isPlaying: isPlaying)
+        checkPrefetch()
+    }
+
+    private func checkPrefetch() {
+        let remaining = songQueue.count - currentSongIndex - 1
+        if remaining <= 2 && !isFetchingNextBlock {
+            Task { await fetchAndEnqueueNextBlock() }
+        }
+    }
+
+    private func fetchAndEnqueueNextBlock() async {
+        guard let block = currentBlock else { return }
+        isFetchingNextBlock = true
+        defer { isFetchingNextBlock = false }
         do {
-            let track = try await api.nowPlaying(channel: selectedChannel)
-            currentTrack = track
-            audioPlayer.updateNowPlaying(track)
-            errorMessage = nil
+            let next = try await api.getBlock(channel: selectedChannel, event: block.endEvent)
+            currentBlock = next
+            songQueue.append(contentsOf: next.songs)
+            audioPlayer.appendSongs(next.songs.map(\.gaplessURL))
         } catch {
             errorMessage = error.localizedDescription
         }
     }
+
+    // MARK: - Remote commands
 
     private func setupRemoteCommands() {
         let cc = MPRemoteCommandCenter.shared()
 
         cc.playCommand.addTarget { [weak self] _ in
             Task { @MainActor [weak self] in
-                self?.audioPlayer.resume()
-                self?.isPlaying = true
+                guard let self else { return }
+                if !songQueue.isEmpty {
+                    audioPlayer.resume()
+                    isPlaying = true
+                } else {
+                    launchPlayback()
+                }
             }
             return .success
         }
 
         cc.pauseCommand.addTarget { [weak self] _ in
             Task { @MainActor [weak self] in
-                self?.audioPlayer.pause()
-                self?.isPlaying = false
+                guard let self else { return }
+                audioPlayer.pause()
+                isPlaying = false
             }
             return .success
         }
 
         cc.stopCommand.addTarget { [weak self] _ in
             Task { @MainActor [weak self] in
-                self?.audioPlayer.pause()
-                self?.isPlaying = false
+                guard let self else { return }
+                audioPlayer.pause()
+                isPlaying = false
             }
             return .success
         }
 
-        cc.nextTrackCommand.isEnabled = false
+        cc.nextTrackCommand.addTarget { [weak self] _ in
+            Task { @MainActor [weak self] in
+                self?.audioPlayer.advanceToNext()
+            }
+            return .success
+        }
+
         cc.previousTrackCommand.isEnabled = false
     }
 }

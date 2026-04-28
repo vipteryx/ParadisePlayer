@@ -24,20 +24,23 @@ struct PlayerView: View {
 
     private var backgroundLayer: some View {
         ZStack {
+            defaultGradient
+
             if let url = vm.currentTrack?.artURL {
-                AsyncImage(url: url) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .blur(radius: 80)
-                        .scaleEffect(1.4)
-                } placeholder: {
-                    defaultGradient
+                AsyncImage(url: url) { phase in
+                    if let image = phase.image {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .blur(radius: 80)
+                            .scaleEffect(1.4)
+                            .transition(.opacity.animation(.easeInOut(duration: 0.8)))
+                    }
                 }
-            } else {
-                defaultGradient
+                .id(url)
             }
-            Color.black.opacity(0.45)
+
+            Color.black.opacity(0.4)
         }
         .ignoresSafeArea()
     }
@@ -141,23 +144,27 @@ struct PlayerView: View {
                     Circle()
                         .fill(.white.opacity(0.12))
                         .frame(width: 76, height: 76)
-                    Image(systemName: vm.isPlaying ? "pause.fill" : "play.fill")
-                        .font(.system(size: 28, weight: .semibold))
-                        .foregroundStyle(.white)
-                        .offset(x: vm.isPlaying ? 0 : 2)
+                    if vm.isLoading {
+                        ProgressView()
+                            .tint(.white)
+                    } else {
+                        Image(systemName: vm.isPlaying ? "pause.fill" : "play.fill")
+                            .font(.system(size: 28, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .offset(x: vm.isPlaying ? 0 : 2)
+                    }
                 }
                 .glassEffect(.regular, in: Circle())
             }
             .animation(.spring(response: 0.3, dampingFraction: 0.6), value: vm.isPlaying)
 
             Button {
-                // Reserved: skip / next in block
+                vm.skipToNext()
             } label: {
                 Image(systemName: "forward.fill")
                     .font(.title2)
-                    .foregroundStyle(.white.opacity(0.3))
+                    .foregroundStyle(.white)
             }
-            .disabled(true)
         }
         .padding(.bottom, 32)
     }

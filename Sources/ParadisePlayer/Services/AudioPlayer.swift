@@ -4,54 +4,110 @@ import UIKit
 
 @MainActor
 final class AudioPlayer {
-    private var player: AVPlayer?
-    private(set) var isPlaying = false
+    private var queuePlayer = AVQueuePlayer()
+    private var itemObservers: [Any] = []
+    private var artTask: Task<Void, Never>?
+
+    var onSongFinished: (() -> Void)?
 
     init() {
         configureAudioSession()
     }
 
-    func play(channel: Channel) {
-        player?.pause()
-        player = AVPlayer(url: channel.streamURL)
-        player?.play()
-        isPlaying = true
+    // MARK: - Queue management
+
+    func loadSongs(_ urls: [URL], initialSeek: TimeInterval = 0) {
+        clearItemObservers()
+        queuePlayer.removeAllItems()
+        artTask?.cancel()
+
+        guard !urls.isEmpty else { return }
+
+        for (i, url) in urls.enumerated() {
+            let item = AVPlayerItem(url: url)
+            queuePlayer.insert(item, after: nil)
+            // Seek first item to join the live stream at the correct position
+            if i == 0 && initialSeek > 0 {
+                item.seek(to: CMTime(seconds: initialSeek, preferredTimescale: 1000), completionHandler: nil)
+            }
+            observeFinish(of: item)
+        }
+    }
+
+    func appendSongs(_ urls: [URL]) {
+        for url in urls {
+            let item = AVPlayerItem(url: url)
+            queuePlayer.insert(item, after: nil)
+            observeFinish(of: item)
+        }
+    }
+
+    // MARK: - Playback
+
+    func play() {
+        queuePlayer.play()
     }
 
     func pause() {
-        player?.pause()
-        isPlaying = false
+        queuePlayer.pause()
         updatePlaybackRate(0)
     }
 
     func resume() {
-        player?.play()
-        isPlaying = true
+        queuePlayer.play()
         updatePlaybackRate(1)
     }
 
-    func updateNowPlaying(_ track: Track) {
-        var info: [String: Any] = [
+    func advanceToNext() {
+        queuePlayer.advanceToNextItem()
+    }
+
+    // MARK: - Now Playing
+
+    func updateNowPlaying(_ track: Track, isPlaying: Bool) {
+        let info: [String: Any] = [
             MPMediaItemPropertyTitle: track.title,
             MPMediaItemPropertyArtist: track.artist,
             MPMediaItemPropertyAlbumTitle: track.album,
             MPMediaItemPropertyPlaybackDuration: track.duration,
-            MPNowPlayingInfoPropertyElapsedPlaybackTime: track.elapsed,
-            MPNowPlayingInfoPropertyPlaybackRate: isPlaying ? 1.0 : 0.0,
-            MPNowPlayingInfoPropertyIsLiveStream: true
+            MPNowPlayingInfoPropertyElapsedPlaybackTime: 0,
+            MPNowPlayingInfoPropertyPlaybackRate: isPlaying ? 1.0 : 0.0
         ]
         MPNowPlayingInfoCenter.default().nowPlayingInfo = info
 
-        if let artURL = track.artURL {
-            Task { @MainActor in
-                guard let (data, _) = try? await URLSession.shared.data(from: artURL),
-                      let image = UIImage(data: data) else { return }
+        guard let artURL = track.artURL else { return }
+        artTask?.cancel()
+        artTask = Task {
+            guard let (data, _) = try? await URLSession.shared.data(from: artURL),
+                  !Task.isCancelled else { return }
+            await MainActor.run {
+                guard let image = UIImage(data: data) else { return }
                 let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
                 var updated = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [:]
                 updated[MPMediaItemPropertyArtwork] = artwork
                 MPNowPlayingInfoCenter.default().nowPlayingInfo = updated
             }
         }
+    }
+
+    // MARK: - Private
+
+    private func observeFinish(of item: AVPlayerItem) {
+        let token = NotificationCenter.default.addObserver(
+            forName: .AVPlayerItemDidPlayToEndTime,
+            object: item,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor [weak self] in
+                self?.onSongFinished?()
+            }
+        }
+        itemObservers.append(token)
+    }
+
+    private func clearItemObservers() {
+        itemObservers.forEach { NotificationCenter.default.removeObserver($0) }
+        itemObservers = []
     }
 
     private func updatePlaybackRate(_ rate: Float) {

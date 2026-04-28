@@ -7,5 +7,6 @@ struct Track: Equatable, Sendable {
     let album: String
     let artURL: URL?
     let duration: TimeInterval
-    let elapsed: TimeInterval
+    let gaplessURL: URL
+    let event: String
 }
