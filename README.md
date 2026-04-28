@@ -45,3 +45,20 @@ Set your development team in **Signing & Capabilities**, then build and run.
 ## License
 
 MIT
+
+---
+
+## Changelog
+
+### 2026-04-28 — Initial project
+
+- Scaffolded iOS 26 SwiftUI project with xcodegen
+- `Channel` model — 4 channels (Main, Mellow, Rock, Global) with FLAC stream URLs
+- `Track` model — immutable, `Sendable` song data struct
+- `RadioParadiseAPI` — async `now_playing` endpoint, decodes track + album art URL
+- `AudioPlayer` — `AVPlayer` wrapper with `AVAudioSession` background audio config, `MPNowPlayingInfoCenter` lock screen card (title, artist, album, art), `MPRemoteCommandCenter` play/pause/stop
+- `PlayerViewModel` — `@Observable @MainActor`, owns audio + API, 10-second polling loop, channel switching
+- `PlayerView` — full-screen Liquid Glass UI: blurred album art background, album art card (scales on pause), track info, glass play/pause button, glass channel picker
+- ATS exceptions configured for `stream.radioparadise.com` (HTTP streams)
+- `UIBackgroundModes: audio` set in `Info.plist`
+- Git repository initialised
