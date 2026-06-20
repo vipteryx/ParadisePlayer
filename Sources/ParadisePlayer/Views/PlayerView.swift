@@ -4,18 +4,16 @@ struct PlayerView: View {
     @Environment(PlayerViewModel.self) private var vm
 
     var body: some View {
-        ZStack {
-            backgroundLayer
-
-            VStack(spacing: 0) {
-                Spacer()
-                albumArt
-                trackInfo
-                Spacer()
-                controls
-                channelPicker
-            }
+        VStack(spacing: 0) {
+            Spacer()
+            albumArt
+            trackInfo
+            Spacer()
+            controls
+            channelPicker
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background { backgroundLayer }
         .ignoresSafeArea()
         .preferredColorScheme(.dark)
     }
@@ -35,6 +33,8 @@ struct PlayerView: View {
                             .blur(radius: 80)
                             .scaleEffect(1.4)
                             .transition(.opacity.animation(.easeInOut(duration: 0.8)))
+                    } else {
+                        Color.clear
                     }
                 }
                 .id(url)
@@ -42,7 +42,6 @@ struct PlayerView: View {
 
             Color.black.opacity(0.4)
         }
-        .ignoresSafeArea()
     }
 
     private var defaultGradient: some View {

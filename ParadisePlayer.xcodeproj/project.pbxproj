@@ -25,7 +25,7 @@
 		4A17B575820EAECE9723CB4C /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		59DD611B593B2A47A53DC8E2 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		602F005E6CEC38EA0168BDFF /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		6ACF6889A691949CF4FB7F57 /* ParadisePlayer.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = ParadisePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ACF6889A691949CF4FB7F57 /* Paradise Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paradise Player.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F86FC6FF7334A58B9B2B042 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		9EF48069A13119565A12D5AB /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		B1B1A4B7DD7BB87D503ED2B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,7 +44,7 @@
 		136FB423AB48F450A0354AFE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6ACF6889A691949CF4FB7F57 /* ParadisePlayer.app */,
+				6ACF6889A691949CF4FB7F57 /* Paradise Player.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,7 +140,7 @@
 			packageProductDependencies = (
 			);
 			productName = ParadisePlayer;
-			productReference = 6ACF6889A691949CF4FB7F57 /* ParadisePlayer.app */;
+			productReference = 6ACF6889A691949CF4FB7F57 /* Paradise Player.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -151,8 +151,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1640;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 53AEC76477E3A44162740F84 /* Build configuration list for PBXProject "ParadisePlayer" */;
 			developmentRegion = en;
@@ -208,6 +206,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = QBQA7NAXBH;
 				INFOPLIST_FILE = Sources/ParadisePlayer/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -290,6 +289,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = QBQA7NAXBH;
 				INFOPLIST_FILE = Sources/ParadisePlayer/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (

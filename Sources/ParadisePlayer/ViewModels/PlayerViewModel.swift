@@ -19,6 +19,7 @@ final class PlayerViewModel {
     private var currentBlock: Block?
     private var isFetchingNextBlock = false
     private var startupTask: Task<Void, Never>?
+    private var prefetchTask: Task<Void, Never>?
 
     init() {
         setupRemoteCommands()
@@ -55,10 +56,13 @@ final class PlayerViewModel {
 
     private func launchPlayback() {
         startupTask?.cancel()
+        prefetchTask?.cancel()
+        prefetchTask = nil
         startupTask = Task { await startPlaying() }
     }
 
     private func startPlaying() async {
+        isFetchingNextBlock = false
         isLoading = true
         defer { isLoading = false }
         do {
@@ -102,7 +106,7 @@ final class PlayerViewModel {
     private func checkPrefetch() {
         let remaining = songQueue.count - currentSongIndex - 1
         if remaining <= 2 && !isFetchingNextBlock {
-            Task { await fetchAndEnqueueNextBlock() }
+            prefetchTask = Task { await fetchAndEnqueueNextBlock() }
         }
     }
 
@@ -115,6 +119,7 @@ final class PlayerViewModel {
             currentBlock = next
             songQueue.append(contentsOf: next.songs)
             audioPlayer.appendSongs(next.songs.map(\.gaplessURL))
+            checkPrefetch()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -158,7 +163,7 @@ final class PlayerViewModel {
 
         cc.nextTrackCommand.addTarget { [weak self] _ in
             Task { @MainActor [weak self] in
-                self?.audioPlayer.advanceToNext()
+                self?.skipToNext()
             }
             return .success
         }

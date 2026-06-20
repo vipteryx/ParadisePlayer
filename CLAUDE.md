@@ -29,7 +29,7 @@ Channels: `0` Main · `1` Mellow · `2` Rock · `3` Global. No auth required.
 - `elapsed` per song — position of that song's start within the block, in **milliseconds**
 - `song_id` per song — returned as **String** (not Int, unlike `now_playing`)
 - `image_base` — protocol-relative e.g. `"//img.radioparadise.com/"`, prepend `"https:"`
-- `duration` per song — assumed seconds (same as `now_playing`); unverified for block API
+- `duration` per song — **milliseconds** in the block API (verified); divide by 1000 for seconds
 
 ## Playback model
 

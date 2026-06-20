@@ -67,7 +67,7 @@ private struct BlockResponse: Decodable {
                 artist: s.artist ?? "Unknown",
                 album: s.album ?? "",
                 artURL: artURL,
-                duration: TimeInterval(s.duration ?? 0),
+                duration: TimeInterval(s.duration ?? 0) / 1000.0,
                 gaplessURL: gaplessURL,
                 event: s.event ?? ""
             )

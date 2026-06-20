@@ -7,6 +7,7 @@ final class AudioPlayer {
     private var queuePlayer = AVQueuePlayer()
     private var itemObservers: [Any] = []
     private var artTask: Task<Void, Never>?
+    private var seekObserver: NSKeyValueObservation?
 
     var onSongFinished: (() -> Void)?
 
@@ -18,6 +19,8 @@ final class AudioPlayer {
 
     func loadSongs(_ urls: [URL], initialSeek: TimeInterval = 0) {
         clearItemObservers()
+        seekObserver?.invalidate()
+        seekObserver = nil
         queuePlayer.removeAllItems()
         artTask?.cancel()
 
@@ -26,9 +29,13 @@ final class AudioPlayer {
         for (i, url) in urls.enumerated() {
             let item = AVPlayerItem(url: url)
             queuePlayer.insert(item, after: nil)
-            // Seek first item to join the live stream at the correct position
             if i == 0 && initialSeek > 0 {
-                item.seek(to: CMTime(seconds: initialSeek, preferredTimescale: 1000), completionHandler: nil)
+                seekObserver = item.observe(\.status, options: [.new]) { [weak self, weak item] _, _ in
+                    guard let item, item.status == .readyToPlay else { return }
+                    item.seek(to: CMTime(seconds: initialSeek, preferredTimescale: 1000), completionHandler: nil)
+                    self?.seekObserver?.invalidate()
+                    self?.seekObserver = nil
+                }
             }
             observeFinish(of: item)
         }
