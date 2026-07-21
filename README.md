@@ -53,6 +53,11 @@ MIT
 
 ## Changelog
 
+### 2026-07-21 — Seek observer capture cleanup
+
+- Initial-seek KVO closure no longer captures `self` — avoids touching `@MainActor`-isolated state from the nonisolated KVO callback (Swift 6 strict concurrency)
+- Trade-off: the observer is no longer invalidated after the first seek; one-shot invalidation (via a `MainActor` hop) and an `.initial` observation option are tracked in TODO
+
 ### 2026-04-28 — Bug fixes & stabilisation
 
 - `song_id` decoded as `String` (block API returns string, not int like `now_playing`)

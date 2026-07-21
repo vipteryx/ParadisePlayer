@@ -30,11 +30,9 @@ final class AudioPlayer {
             let item = AVPlayerItem(url: url)
             queuePlayer.insert(item, after: nil)
             if i == 0 && initialSeek > 0 {
-                seekObserver = item.observe(\.status, options: [.new]) { [weak self, weak item] _, _ in
+                seekObserver = item.observe(\.status, options: [.new]) { [weak item] _, _ in
                     guard let item, item.status == .readyToPlay else { return }
                     item.seek(to: CMTime(seconds: initialSeek, preferredTimescale: 1000), completionHandler: nil)
-                    self?.seekObserver?.invalidate()
-                    self?.seekObserver = nil
                 }
             }
             observeFinish(of: item)
