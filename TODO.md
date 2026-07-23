@@ -28,8 +28,8 @@
 - [ ] Add entitlement to `project.yml` once approved
 
 ## Phase 6 — Polish & Edge Cases
-- [ ] Restore one-shot semantics for the initial-seek observer — invalidate `seekObserver` after the first seek via a `Task { @MainActor in ... }` hop (removed when dropping `self` capture; observer currently re-fires on any later `.readyToPlay` KVO emission and leaks until the next channel switch)
-- [ ] Add `.initial` to the seek observer options — closes the insert-before-observe race where the item is ready before KVO registration and the initial seek is silently skipped
+- [x] Restore one-shot semantics for the initial-seek observer — invalidate `seekObserver` after the first seek via a `Task { @MainActor in ... }` hop
+- [x] Add `.initial` to the seek observer options — closes the insert-before-observe race where the item is ready before KVO registration and the initial seek is silently skipped
 - [ ] Handle AVAudioSession interruptions (phone calls, Siri) — pause and resume
 - [ ] Handle network loss — show error state, auto-retry on reconnect
 - [ ] Show `errorMessage` in UI (currently set but not displayed)

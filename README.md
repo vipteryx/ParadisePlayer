@@ -53,10 +53,10 @@ MIT
 
 ## Changelog
 
-### 2026-07-21 — Seek observer capture cleanup
+### 2026-07-23 — Initial-seek observer correctness
 
-- Initial-seek KVO closure no longer captures `self` — avoids touching `@MainActor`-isolated state from the nonisolated KVO callback (Swift 6 strict concurrency)
-- Trade-off: the observer is no longer invalidated after the first seek; one-shot invalidation (via a `MainActor` hop) and an `.initial` observation option are tracked in TODO
+- Initial-seek KVO closure hops to the `MainActor` to invalidate itself after the first seek — restores one-shot semantics without touching `@MainActor`-isolated state from the nonisolated KVO callback (Swift 6 strict concurrency). Prevents a stray later `.readyToPlay` emission from re-seeking mid-song, and stops the observation leaking until the next channel switch
+- Added `.initial` to the observation options — closes the insert-before-observe race where a fast-loading item reached `.readyToPlay` before the observer attached, silently skipping the join-position seek
 
 ### 2026-04-28 — Bug fixes & stabilisation
 
