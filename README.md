@@ -53,6 +53,10 @@ MIT
 
 ## Changelog
 
+### 2026-07-23 — Fix channel-switch queue corruption
+
+- `fetchAndEnqueueNextBlock` now bails after its `await` if the task was cancelled or the channel changed while the fetch was in flight. Previously a prefetch that resolved during a channel switch would overwrite `currentBlock` with the old channel's block and append its songs into the new channel's queue — causing the wrong channel's tracks to play a few songs later, with desynced metadata.
+
 ### 2026-07-23 — Fix now-playing artwork crash (EXC_BREAKPOINT)
 
 - `MPMediaItemArtwork` request handler moved into a `nonisolated` helper (`makeArtwork`). MediaPlayer invokes the handler on its own `MPNowPlayingInfoCenter/accessQueue`; the previous closure inherited `@MainActor` isolation and tripped the Swift 6 executor check (`dispatch_assert_queue`), crashing whenever the lock-screen art was rendered to JPEG. UIImage is still created on the main actor.

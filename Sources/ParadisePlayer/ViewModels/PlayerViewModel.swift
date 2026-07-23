@@ -112,16 +112,24 @@ final class PlayerViewModel {
 
     private func fetchAndEnqueueNextBlock() async {
         guard let block = currentBlock else { return }
+        let channel = selectedChannel
         isFetchingNextBlock = true
         defer { isFetchingNextBlock = false }
         do {
-            let next = try await api.getBlock(channel: selectedChannel, event: block.endEvent)
+            let next = try await api.getBlock(channel: channel, event: block.endEvent)
+            // A channel switch (or other relaunch) may have happened while the
+            // fetch was in flight. If so, this block belongs to a stale channel —
+            // dropping it here prevents old-channel songs leaking into the new
+            // queue and hijacking the prefetch chain via the wrong endEvent.
+            guard !Task.isCancelled, selectedChannel == channel else { return }
             currentBlock = next
             songQueue.append(contentsOf: next.songs)
             audioPlayer.appendSongs(next.songs.map(\.gaplessURL))
             checkPrefetch()
         } catch {
-            errorMessage = error.localizedDescription
+            if !Task.isCancelled {
+                errorMessage = error.localizedDescription
+            }
         }
     }
 
