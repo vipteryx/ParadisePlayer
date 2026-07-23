@@ -91,7 +91,7 @@ final class AudioPlayer {
                   !Task.isCancelled else { return }
             await MainActor.run {
                 guard let image = UIImage(data: data) else { return }
-                let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+                let artwork = Self.makeArtwork(image)
                 var updated = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [:]
                 updated[MPMediaItemPropertyArtwork] = artwork
                 MPNowPlayingInfoCenter.default().nowPlayingInfo = updated
@@ -100,6 +100,15 @@ final class AudioPlayer {
     }
 
     // MARK: - Private
+
+    /// Builds the artwork in a `nonisolated` context so its request handler carries
+    /// no actor isolation. MediaPlayer invokes that handler on its own background
+    /// queue (`MPNowPlayingInfoCenter/accessQueue`); a `@MainActor`-isolated closure
+    /// would trip the Swift 6 executor check and trap there. The `UIImage` is still
+    /// created on the main actor by the caller and passed in.
+    nonisolated private static func makeArtwork(_ image: UIImage) -> MPMediaItemArtwork {
+        MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+    }
 
     private func observeFinish(of item: AVPlayerItem) {
         let token = NotificationCenter.default.addObserver(

@@ -80,6 +80,6 @@ Do this before committing.
 - `UIBackgroundModes: audio` is set — playback survives backgrounding
 - `@Observable` + `@Environment` pattern throughout (no `ObservableObject`)
 - Swift 6 strict concurrency — all UI mutations on `@MainActor`
-- `MPMediaItemArtwork` request handler must have UIImage created on `@MainActor` (iOS 26 enforces this via `dispatch_assert_queue`)
+- `MPMediaItemArtwork`: create the `UIImage` on `@MainActor`, but form the artwork's request handler in a `nonisolated` context (e.g. `AudioPlayer.makeArtwork`). MediaPlayer calls that handler on its own `MPNowPlayingInfoCenter/accessQueue`; a `@MainActor`-isolated closure trips the Swift 6 executor check (`swift_task_isCurrentExecutor` → `dispatch_assert_queue`) and traps with `EXC_BREAKPOINT`
 - SourceKit shows false-positive "Cannot find type X" errors without an xcodeproj — run `xcodegen generate` to clear them
 - ATS exceptions only needed for `stream.radioparadise.com` (HTTP); all other RP domains are HTTPS

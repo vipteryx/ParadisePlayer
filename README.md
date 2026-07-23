@@ -53,6 +53,10 @@ MIT
 
 ## Changelog
 
+### 2026-07-23 — Fix now-playing artwork crash (EXC_BREAKPOINT)
+
+- `MPMediaItemArtwork` request handler moved into a `nonisolated` helper (`makeArtwork`). MediaPlayer invokes the handler on its own `MPNowPlayingInfoCenter/accessQueue`; the previous closure inherited `@MainActor` isolation and tripped the Swift 6 executor check (`dispatch_assert_queue`), crashing whenever the lock-screen art was rendered to JPEG. UIImage is still created on the main actor.
+
 ### 2026-07-23 — Initial-seek observer correctness
 
 - Initial-seek KVO closure hops to the `MainActor` to invalidate itself after the first seek — restores one-shot semantics without touching `@MainActor`-isolated state from the nonisolated KVO callback (Swift 6 strict concurrency). Prevents a stray later `.readyToPlay` emission from re-seeking mid-song, and stops the observation leaking until the next channel switch
