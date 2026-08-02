@@ -30,11 +30,13 @@ final class AudioPlayer {
             let item = AVPlayerItem(url: url)
             queuePlayer.insert(item, after: nil)
             if i == 0 && initialSeek > 0 {
-                seekObserver = item.observe(\.status, options: [.new]) { [weak self, weak item] _, _ in
+                seekObserver = item.observe(\.status, options: [.new, .initial]) { [weak self, weak item] _, _ in
                     guard let item, item.status == .readyToPlay else { return }
                     item.seek(to: CMTime(seconds: initialSeek, preferredTimescale: 1000), completionHandler: nil)
-                    self?.seekObserver?.invalidate()
-                    self?.seekObserver = nil
+                    Task { @MainActor [weak self] in
+                        self?.seekObserver?.invalidate()
+                        self?.seekObserver = nil
+                    }
                 }
             }
             observeFinish(of: item)
@@ -89,7 +91,7 @@ final class AudioPlayer {
                   !Task.isCancelled else { return }
             await MainActor.run {
                 guard let image = UIImage(data: data) else { return }
-                let artwork = MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+                let artwork = Self.makeArtwork(image)
                 var updated = MPNowPlayingInfoCenter.default().nowPlayingInfo ?? [:]
                 updated[MPMediaItemPropertyArtwork] = artwork
                 MPNowPlayingInfoCenter.default().nowPlayingInfo = updated
@@ -98,6 +100,15 @@ final class AudioPlayer {
     }
 
     // MARK: - Private
+
+    /// Builds the artwork in a `nonisolated` context so its request handler carries
+    /// no actor isolation. MediaPlayer invokes that handler on its own background
+    /// queue (`MPNowPlayingInfoCenter/accessQueue`); a `@MainActor`-isolated closure
+    /// would trip the Swift 6 executor check and trap there. The `UIImage` is still
+    /// created on the main actor by the caller and passed in.
+    nonisolated private static func makeArtwork(_ image: UIImage) -> MPMediaItemArtwork {
+        MPMediaItemArtwork(boundsSize: image.size) { _ in image }
+    }
 
     private func observeFinish(of item: AVPlayerItem) {
         let token = NotificationCenter.default.addObserver(

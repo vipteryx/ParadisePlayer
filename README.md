@@ -53,6 +53,31 @@ MIT
 
 ## Changelog
 
+### 2026-08-02 — v1.0.0 🎉
+
+First tagged release. Paradise Player is a complete, working iOS 26 client for Radio Paradise:
+
+- Gapless block-based FLAC streaming across all four channels (Main, Mellow, Rock, Global)
+- Joins the live stream at the correct position via `cue` + `elapsed` offsets
+- Skip / next-track, from the app and lock screen
+- Lock screen + Control Center + AirPods now-playing card (art, title, artist, duration)
+- Liquid Glass UI, background audio, Swift 6 strict concurrency throughout
+
+Ships with all playback-stability fixes below (seek timing, prefetch lifecycle, channel-switch queue corruption, and the now-playing artwork crash).
+
+### 2026-07-23 — Fix channel-switch queue corruption
+
+- `fetchAndEnqueueNextBlock` now bails after its `await` if the task was cancelled or the channel changed while the fetch was in flight. Previously a prefetch that resolved during a channel switch would overwrite `currentBlock` with the old channel's block and append its songs into the new channel's queue — causing the wrong channel's tracks to play a few songs later, with desynced metadata.
+
+### 2026-07-23 — Fix now-playing artwork crash (EXC_BREAKPOINT)
+
+- `MPMediaItemArtwork` request handler moved into a `nonisolated` helper (`makeArtwork`). MediaPlayer invokes the handler on its own `MPNowPlayingInfoCenter/accessQueue`; the previous closure inherited `@MainActor` isolation and tripped the Swift 6 executor check (`dispatch_assert_queue`), crashing whenever the lock-screen art was rendered to JPEG. UIImage is still created on the main actor.
+
+### 2026-07-23 — Initial-seek observer correctness
+
+- Initial-seek KVO closure hops to the `MainActor` to invalidate itself after the first seek — restores one-shot semantics without touching `@MainActor`-isolated state from the nonisolated KVO callback (Swift 6 strict concurrency). Prevents a stray later `.readyToPlay` emission from re-seeking mid-song, and stops the observation leaking until the next channel switch
+- Added `.initial` to the observation options — closes the insert-before-observe race where a fast-loading item reached `.readyToPlay` before the observer attached, silently skipping the join-position seek
+
 ### 2026-04-28 — Bug fixes & stabilisation
 
 - `song_id` decoded as `String` (block API returns string, not int like `now_playing`)

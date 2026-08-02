@@ -28,6 +28,13 @@
 - [ ] Add entitlement to `project.yml` once approved
 
 ## Phase 6 — Polish & Edge Cases
+- [x] Restore one-shot semantics for the initial-seek observer — invalidate `seekObserver` after the first seek via a `Task { @MainActor in ... }` hop
+- [x] Add `.initial` to the seek observer options — closes the insert-before-observe race where the item is ready before KVO registration and the initial seek is silently skipped
+- [ ] Recover from failed queue items — if a song's `gaplessURL` fails to load, `AVQueuePlayer` skips it without posting `AVPlayerItemDidPlayToEndTime`, so `currentSongIndex`/`currentTrack` desync from the audio permanently. Observe `currentItem`/item errors to resync.
+- [ ] Update lock-screen elapsed time — `MPNowPlayingInfoPropertyElapsedPlaybackTime` is hardcoded to 0 and never refreshed, so the scrubber never moves (and is wrong by `initialSeek` on the first joined song).
+- [ ] Handle short-final-song / slow-prefetch dead-end — if the last queued song ends before the next block is appended, playback stops and never resumes when the prefetch lands.
+- [ ] Remove dead code — `Channel.streamURL` (unused; only reason for the HTTP ATS exception) and `Block.length` (decoded, never read).
+- [ ] Trim `AudioPlayer.itemObservers` — one NotificationCenter token accumulates per song for the whole session; only cleared on channel switch.
 - [ ] Handle AVAudioSession interruptions (phone calls, Siri) — pause and resume
 - [ ] Handle network loss — show error state, auto-retry on reconnect
 - [ ] Show `errorMessage` in UI (currently set but not displayed)
