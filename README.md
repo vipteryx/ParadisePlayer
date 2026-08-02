@@ -53,6 +53,18 @@ MIT
 
 ## Changelog
 
+### 2026-08-02 — v1.0.0 🎉
+
+First tagged release. Paradise Player is a complete, working iOS 26 client for Radio Paradise:
+
+- Gapless block-based FLAC streaming across all four channels (Main, Mellow, Rock, Global)
+- Joins the live stream at the correct position via `cue` + `elapsed` offsets
+- Skip / next-track, from the app and lock screen
+- Lock screen + Control Center + AirPods now-playing card (art, title, artist, duration)
+- Liquid Glass UI, background audio, Swift 6 strict concurrency throughout
+
+Ships with all playback-stability fixes below (seek timing, prefetch lifecycle, channel-switch queue corruption, and the now-playing artwork crash).
+
 ### 2026-07-23 — Fix channel-switch queue corruption
 
 - `fetchAndEnqueueNextBlock` now bails after its `await` if the task was cancelled or the channel changed while the fetch was in flight. Previously a prefetch that resolved during a channel switch would overwrite `currentBlock` with the old channel's block and append its songs into the new channel's queue — causing the wrong channel's tracks to play a few songs later, with desynced metadata.
